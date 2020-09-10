@@ -6,8 +6,13 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,23 +20,30 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class MainActivity extends AppCompatActivity {
-
+public class MainActivity extends AppCompatActivity implements
+        AdapterView.OnItemSelectedListener {
     private static final String TAG = "MyTag";
+    String[] country = { "Bubble Sort", "Selection Sort", "Insertion Sort", "Merge Sort",};
     int globalWidth;
+    int globalHeight;
     Button bb;
     int arr[];
     int tt;
     int cc = 1;
     int i = 0, j = 0;
     int noOfItems;
-    int count = 0;
     Queue<Integer> q1= new LinkedList<>();
     Queue<Integer> q2= new LinkedList<>();
     Queue<Integer> h1= new LinkedList<>();
     Queue<Integer> h2= new LinkedList<>();
     int c=0;
     LinearLayout root;
+    int itemSelectedSpinner=0;
+    Button start;
+    boolean flag=false;
+    int inProcess=0;
+    Spinner spin;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,20 +55,173 @@ public class MainActivity extends AppCompatActivity {
         int height = displayMetrics.heightPixels;
         int width = displayMetrics.widthPixels;
         globalWidth = width;
+        globalHeight=height;
+
+        Log.d(TAG, "Height = "+globalHeight+"   Width = "+globalWidth);
 
         noOfItems = 60;
         arr = new int[noOfItems];
         createLayoutDynamically(noOfItems);
 
-//        BubbleSort();
-        cc=1;
-//        Msort(arr,0,noOfItems-1);
-//        SelectionSort();
-        InsertionSort();
+        spin = (Spinner) findViewById(R.id.spinner);
+        spin.setOnItemSelectedListener(this);
 
-//        for (int i=0;i<noOfItems;i++){
-//            root.removeView(i);
-//        }
+        //Creating the ArrayAdapter instance having the country list
+        ArrayAdapter aa = new ArrayAdapter(this,android.R.layout.simple_spinner_item,country);
+        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //Setting the ArrayAdapter data on the Spinner
+        spin.setAdapter(aa);
+
+        start=findViewById(R.id.start_button);
+        start.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                flag=true;
+                Handler handler = new Handler();
+                switch (itemSelectedSpinner){
+                    case 0://bubble
+                        inProcess=1;
+
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                Log.d(TAG, "Start Bubble Sort");
+
+                            inProcess=1;
+                                c=1;
+                                cc=1;
+                            BubbleSort();
+
+
+                            }
+                        }, 500);
+
+                        Log.d(TAG, "run: Bubble Sort ended");
+
+                        break;
+                    case 1://selection
+                        inProcess=2;
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                Log.d(TAG, "Start Selection Sort");
+                                inProcess=2;
+                                c=1;
+                                cc=1;
+
+                                SelectionSort();
+
+                            }
+                        }, 500);
+                        break;
+                    case 2://insertion
+                        inProcess=3;
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                inProcess=3;
+                                Log.d(TAG, "Start Insertion Sort");
+                                c=1;
+                                cc=1;
+
+                                InsertionSort();
+
+                            }
+                        }, 500);
+                        break;
+                    case 3://merge
+                        inProcess=4;
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                inProcess=4;
+                                Log.d(TAG, "Start Merge Sort");
+                                c=1;
+                                cc=1;
+
+                                Msort(arr,0,noOfItems-1);
+
+                            }
+                        }, 500);
+                        break;
+                }
+            }
+        });
+
+        cc=1;
+
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        itemSelectedSpinner=i;
+
+
+        if (inProcess>0){
+            Toast.makeText(this, "Wait for Algorithm to finish", Toast.LENGTH_SHORT).show();
+            spin.setSelection(inProcess-1);
+        }
+        else{
+            arrangeRandomly(noOfItems);
+            q1.clear();
+            q2.clear();
+            h1.clear();
+            h2.clear();
+        }
+
+
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+        itemSelectedSpinner=0;
+    }
+    private void createLayoutDynamically(int n) {
+
+        int minH=globalHeight / 5;
+        int progressive=(globalHeight-minH)/n;
+
+        for (int i = 0; i < n; i++) {
+            Button myButton = new Button(this);
+            myButton.setId(i);
+
+            LinearLayout layout = (LinearLayout) findViewById(R.id.linear_layout);
+            layout.addView(myButton);
+
+            LinearLayout.LayoutParams params = (LinearLayout.LayoutParams)
+                    myButton.getLayoutParams();
+            params.weight = 1.0f;
+            int randomNum = ThreadLocalRandom.current().nextInt(globalHeight / 5, globalHeight - (globalHeight / 6));
+            arr[i]=randomNum;
+            params.height = arr[i];
+            myButton.setLayoutParams(params);
+            myButton.setBackgroundColor(Color.parseColor("#000000"));
+
+        }
+
+    }
+    private void arrangeRandomly(int n) {
+        Log.d(TAG, "arrangeRandomly: EXECUTED");
+
+        int minH=globalHeight / 5;
+        int progressive=(globalHeight-minH)/n;
+
+        for (int i = 0; i < n; i++) {
+
+            @SuppressLint("ResourceType") Button mButton = (Button) findViewById(i);
+            LinearLayout.LayoutParams params1 = (LinearLayout.LayoutParams) mButton.getLayoutParams();
+
+            int randomNum = ThreadLocalRandom.current().nextInt(globalHeight / 5, globalHeight - (globalHeight / 6));
+            arr[i]=randomNum;
+
+
+
+            params1.height = arr[i];
+            mButton.setLayoutParams(params1);
+
+
+        }
 
     }
 
@@ -84,7 +249,7 @@ public class MainActivity extends AppCompatActivity {
 
                         @SuppressLint("ResourceType") Button mButton1 = (Button) findViewById(q1.peek());
                         LinearLayout.LayoutParams params1 = (LinearLayout.LayoutParams) mButton1.getLayoutParams();
-                        params1.width = h1.peek();
+                        params1.height = h1.peek();
                         mButton1.setLayoutParams(params1);
                         q1.remove();
                         h1.remove();
@@ -109,7 +274,7 @@ public class MainActivity extends AppCompatActivity {
 
                     @SuppressLint("ResourceType") Button mButton1 = (Button) findViewById(q1.peek());
                     LinearLayout.LayoutParams params1 = (LinearLayout.LayoutParams) mButton1.getLayoutParams();
-                    params1.width = h1.peek();
+                    params1.height = h1.peek();
                     mButton1.setLayoutParams(params1);
                     q1.remove();
                     h1.remove();
@@ -119,6 +284,16 @@ public class MainActivity extends AppCompatActivity {
             cc++;
 
         }
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                inProcess=0;
+
+            }
+        }, 10*cc);
+        cc++;
     }
 
     void SelectionSort()
@@ -156,27 +331,37 @@ public class MainActivity extends AppCompatActivity {
                     @SuppressLint("ResourceType") Button mButton2 = (Button) findViewById(q2.peek());
 
                     LinearLayout.LayoutParams params1 = (LinearLayout.LayoutParams) mButton1.getLayoutParams();
-                    params1.width = h1.peek();
+                    params1.height = h1.peek();
                     mButton1.setLayoutParams(params1);
 
 
                     LinearLayout.LayoutParams params2 = (LinearLayout.LayoutParams) mButton2.getLayoutParams();
-                    params2.width = h2.peek();
+                    params2.height = h2.peek();
                     mButton2.setLayoutParams(params2);
-                    Log.d(TAG, h1.peek()+" "+h2.peek()+" "+q1.peek()+" "+q2.peek());
+//                    Log.d(TAG, h1.peek()+" "+h2.peek()+" "+q1.peek()+" "+q2.peek());
                     q1.remove();
                     q2.remove();
                     h1.remove();
                     h2.remove();
 
                 }
-            }, 100*cc);
+            }, 60*cc);
             cc++;
 
 
 
 
         }
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                inProcess=0;
+
+            }
+        }, 60*cc);
+        cc++;
     }
 
     void merge(int arr[], int l, int m, int r)
@@ -208,7 +393,7 @@ public class MainActivity extends AppCompatActivity {
 
                         @SuppressLint("ResourceType") Button mButton1 = (Button) findViewById(q1.peek());
                         LinearLayout.LayoutParams params1 = (LinearLayout.LayoutParams) mButton1.getLayoutParams();
-                        params1.width = h1.peek();
+                        params1.height = h1.peek();
                         mButton1.setLayoutParams(params1);
                         q1.remove();
                         h1.remove();
@@ -228,7 +413,7 @@ public class MainActivity extends AppCompatActivity {
 
                         @SuppressLint("ResourceType") Button mButton1 = (Button) findViewById(q1.peek());
                         LinearLayout.LayoutParams params1 = (LinearLayout.LayoutParams) mButton1.getLayoutParams();
-                        params1.width = h1.peek();
+                        params1.height = h1.peek();
                         mButton1.setLayoutParams(params1);
                         q1.remove();
                         h1.remove();
@@ -252,7 +437,7 @@ public class MainActivity extends AppCompatActivity {
 
                     @SuppressLint("ResourceType") Button mButton1 = (Button) findViewById(q1.peek());
                     LinearLayout.LayoutParams params1 = (LinearLayout.LayoutParams) mButton1.getLayoutParams();
-                    params1.width = h1.peek();
+                    params1.height = h1.peek();
                     mButton1.setLayoutParams(params1);
                     q1.remove();
                     h1.remove();
@@ -275,7 +460,7 @@ public class MainActivity extends AppCompatActivity {
 
                     @SuppressLint("ResourceType") Button mButton1 = (Button) findViewById(q1.peek());
                     LinearLayout.LayoutParams params1 = (LinearLayout.LayoutParams) mButton1.getLayoutParams();
-                    params1.width = h1.peek();
+                    params1.height = h1.peek();
                     mButton1.setLayoutParams(params1);
                     q1.remove();
                     h1.remove();
@@ -295,6 +480,19 @@ public class MainActivity extends AppCompatActivity {
             Msort(arr, l, m);
             Msort(arr, m + 1, r);
             merge(arr, l, m, r);
+        }
+        if (l==0 && r==noOfItems-1){
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+
+                    inProcess=0;
+                    Log.d(TAG, "run: Merger Sort Ended");
+
+                }
+            }, 10*cc);
+            cc++;
         }
     }
 
@@ -326,14 +524,14 @@ public class MainActivity extends AppCompatActivity {
                                     @SuppressLint("ResourceType") Button mButton2 = (Button) findViewById(q2.peek());
 
                                     LinearLayout.LayoutParams params1 = (LinearLayout.LayoutParams) mButton1.getLayoutParams();
-                                    params1.width = h1.peek();
+                                    params1.height = h1.peek();
                                     mButton1.setLayoutParams(params1);
 
 
                                     LinearLayout.LayoutParams params2 = (LinearLayout.LayoutParams) mButton2.getLayoutParams();
-                                    params2.width = h2.peek();
+                                    params2.height = h2.peek();
                                     mButton2.setLayoutParams(params2);
-                                    Log.d(TAG, h1.peek()+" "+h2.peek()+" "+q1.peek()+" "+q2.peek());
+//                                    Log.d(TAG, h1.peek()+" "+h2.peek()+" "+q1.peek()+" "+q2.peek());
                                     q1.remove();
                                     q2.remove();
                                     h1.remove();
@@ -346,35 +544,19 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 }
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                inProcess=0;
+
+            }
+        }, 10*cc);
+        cc++;
 
     }
 
-
-
-    private void createLayoutDynamically(int n) {
-
-        int minH=globalWidth / 5;
-        int progressive=(globalWidth-minH)/n;
-
-        for (int i = 0; i < n; i++) {
-            Button myButton = new Button(this);
-            myButton.setId(i);
-
-            LinearLayout layout = (LinearLayout) findViewById(R.id.linear_layout);
-            layout.addView(myButton);
-
-            LinearLayout.LayoutParams params = (LinearLayout.LayoutParams)
-                    myButton.getLayoutParams();
-            params.weight = 1.0f;
-            int randomNum = ThreadLocalRandom.current().nextInt(globalWidth / 5, globalWidth - (globalWidth / 6));
-            arr[i]=randomNum;
-            params.width = arr[i];
-            myButton.setLayoutParams(params);
-            myButton.setBackgroundColor(Color.parseColor("#000000"));
-
-        }
-
-    }
 
 
 }

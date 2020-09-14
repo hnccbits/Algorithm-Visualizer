@@ -6,14 +6,14 @@
 Algorithm Visualizer is an anroid alternative to visualize Algorithms on a 2D Screen. It is ad-free and and open source under MIT Lisence<br/>
 
 <div style="display:flex;" >
-<a href="https://f-droid.org/app/org.horaapps.leafpic">
-    <img src="https://f-droid.org/badge/get-it-on.png"
+<a href="https://play.google.com/store/apps/details?id=project.teamvoyager.visualizer">
+    <img src="https://github.com/anandshivam44/Algorithm-Visualizer/blob/master/app/release/QR%20Code.png"
          alt="Get it on F-Droid" height="80">
 </a>
 <a href="https://play.google.com/store/apps/details?id=org.horaapps.leafpic">
     <img alt="Get it on Google Play"
         height="80"
-        src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" />
+        src="https://play.google.com/store/apps/details?id=project.teamvoyager.visualizer" />
 </a>
 </div>
 </br></br>
@@ -43,9 +43,7 @@ If you want, you can join us on Telegram - send us a message we will add you!
 You can trace the status of known issues [here](https://gitlab.com/HoraApps/LeafPic/issues),
 also feel free to file a new issue (helpful description, screenshots and logcat are appreciated), or send me an [email](mailto:dnld.sht@gmail.com) if you have any questions.
 
-###### Translations
-If you are able to contribute with a new translation of a missing language or if you want to improve an existing one, we greatly appreciate any suggestion!
-The project uses [Crowdin](https://crowdin.com/project/leafpic), a platform that allows anybody to contribute to translating the app
+
 
 #### Licensing
 LeafPic is licensed under the [GNU v3 Public License](https://gitlab.com/HoraApps/LeafPic/blob/dev/LICENSE).

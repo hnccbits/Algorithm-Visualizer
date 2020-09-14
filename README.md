@@ -40,7 +40,7 @@ also feel free to file a new issue (helpful description, screenshots and logcat 
 #### Licensing
 Algorithm Analyzer is licensed under the [MIT License](https://github.com/anandshivam44/Algorithm-Visualizer/blob/master/LICENSE).
 In addition to the terms set by the MIT Lisence, we ask that if you use any code from this repository that you send us a message to let us know.
-
+```shell
 MIT License
 
 Copyright (c) 2020 Shivam Anand
@@ -62,3 +62,4 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+```

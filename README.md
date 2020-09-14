@@ -1,7 +1,7 @@
 
  
 
-# LeafPic
+# Algorithm Visualizer
 <img src="https://lh3.googleusercontent.com/pEPOv7cvlBoxoK5djouVp2q1MNh_WL89_DLvFoGsWjdaqumUW49hS442qUkUtM4OuVNr=s180-rw" align="left" width="200" hspace="10" vspace="10">
 Algorithm Visualizer is an anroid alternative to visualize Algorithms on a 2D Screen. It is ad-free and and open source under MIT Lisence<br/>
 

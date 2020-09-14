@@ -8,9 +8,9 @@ Algorithm Visualizer is an anroid alternative to visualize Algorithms on a 2D Sc
 <div style="display:flex;" >
 <a href="https://play.google.com/store/apps/details?id=project.teamvoyager.visualizer">
     <img src="https://github.com/anandshivam44/Algorithm-Visualizer/blob/master/app/release/QR%20Code.png"
-         alt="Get it on F-Droid" height="80">
+         alt="Get it on Google Play" height="160">
 </a>
-<a href="https://play.google.com/store/apps/details?id=org.horaapps.leafpic">
+<a href="https://www.gstatic.com/android/market_images/web/play_prism_hlock_2x.png">
     <img alt="Get it on Google Play"
         height="80"
         src="https://play.google.com/store/apps/details?id=project.teamvoyager.visualizer" />

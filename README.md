@@ -1,14 +1,19 @@
 
  
 
-# Algorithm Visualizer
-<img src="https://lh3.googleusercontent.com/pEPOv7cvlBoxoK5djouVp2q1MNh_WL89_DLvFoGsWjdaqumUW49hS442qUkUtM4OuVNr=s180-rw" align="left" width="200" hspace="10" vspace="10">
-Algorithm Visualizer is an anroid alternative to visualize Algorithms on a 2D Screen. It is ad-free and and open source under MIT Lisence<br/>
+> # Algorithm Visualizer
 
+___
+
+<img src="https://lh3.googleusercontent.com/pEPOv7cvlBoxoK5djouVp2q1MNh_WL89_DLvFoGsWjdaqumUW49hS442qUkUtM4OuVNr=s180-rw" align="left" width="200" hspace="10" vspace="10">
+Algorithm Visualizer is an anroid alternative to visualize Algorithms on a 2D Screen. It is ad-free and and open source under MIT Lisence
+
+
+<br/>
 <div style="display:flex;" >
 <a href="https://play.google.com/store/apps/details?id=project.teamvoyager.visualizer">
     <img src="https://github.com/anandshivam44/Algorithm-Visualizer/blob/master/app/release/QR%20Code.png"
-         alt="Get it on Google Play" height="160">
+         alt="Get it on Google Play" height="250">
 </a>
 <a href="https://play.google.com/store/apps/details?id=project.teamvoyager.visualizer">
     <img alt="Get it on Google Play"
@@ -20,11 +25,11 @@ Algorithm Visualizer is an anroid alternative to visualize Algorithms on a 2D Sc
 
 ## Screenshots
 <div style="display:flex;" >
-<img  src="screenshots/1.jpg" width="50%" >
-<img style="margin-left:10px;" src="screenshots/2.jpg" width="50%" >
-<img style="margin-left:10px;" src="screenshots/3.jpg" width="50%" >
-<img style="margin-left:10px;" src="screenshots/4.jpg" width="50%" >
-<img style="margin-left:10px;" src="screenshots/5.jpg" width="50%" >
+<img  src="screenshots/1.jpg" width="40%" >
+<img  src="screenshots/2.jpg" width="40%" >
+<img  src="screenshots/3.jpg" width="40%" >
+<img  src="screenshots/4.jpg" width="40%" >
+<img  src="screenshots/5.jpg" width="40%" >
 
 </div>
 

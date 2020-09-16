@@ -35,6 +35,8 @@ Algorithm Visualizer is an anroid alternative to visualize Algorithms on a 2D Sc
 
 #### Contributing
 
+###### Workflow of the App
+Assume we are performing Insertion Sort. Android/Java cannot pause a loop and make UI changes. Instead we create a Queue and add all pending swaps to the Queue. Simultaneously, within the Sort we start new Threads to make UI change at an interval of time del(t).
 
 ###### Issues
 You can trace the status of known issues [here](https://github.com/anandshivam44/Algorithm-Visualizer/issues),

@@ -10,44 +10,64 @@
         android:layout_width="match_parent"
         android:background="#dfe4ea"
         android:layout_height="?android:attr/actionBarSize">
+
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="72dp">
+
             <androidx.appcompat.widget.AppCompatSpinner
                 android:id="@+id/spinner"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_width="201dp"
+                android:layout_height="42dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
-                android:layout_marginLeft="30dp"
-                />
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="34dp"
+                android:layout_marginLeft="34dp"
+                android:layout_marginTop="1dp" />
+
             <Button
                 android:id="@+id/start_button"
-                android:background="@drawable/button_background"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:textColor="@android:color/white"
+                android:layout_width="124dp"
+                android:layout_height="38dp"
+                android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:textSize="20sp"
-                android:text="Start"
-                android:textAllCaps="false"
-                android:layout_marginRight="30dp"
                 android:layout_marginVertical="4dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="28dp"
+                android:layout_marginRight="28dp"
+                android:background="@drawable/button_background"
+                android:text="Start"
 
-                />
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/textview1"
+                android:layout_width="142dp"
+                android:layout_height="36dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="113dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginEnd="241dp"
+                android:layout_marginBottom="29dp"
+                android:layout_toEndOf="@+id/spinner"
+                android:text="00:00" />
         </RelativeLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
     <LinearLayout
         android:id="@+id/linear_layout"
-        android:layout_marginHorizontal="10dp"
-        android:orientation="horizontal"
-
-
-
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></LinearLayout>
+        android:layout_height="match_parent"
+
+
+        android:layout_marginHorizontal="10dp"
+        android:orientation="horizontal"></LinearLayout>
 
     <!--    <Button-->
     <!--        android:layout_width="0dp"-->
@@ -55,11 +75,8 @@
     <!--        android:layout_weight="1"-->
     <!--        android:layout_gravity="bottom"-->
     <!--        android:text="Button"/>-->
->
+    >
 
 
 </LinearLayout>
-
-
-
 

@@ -12,13 +12,17 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class MainActivity extends AppCompatActivity implements
@@ -26,6 +30,11 @@ public class MainActivity extends AppCompatActivity implements
     private static final String TAG = "MyTag";
     String[] algo = { "Bubble Sort", "Selection Sort", "Insertion Sort", "Merge Sort",
             "Cocktail Shaker Sort","Radix Sort","Heap Sort"};
+    private Timer _timer = new Timer();
+    private double s= 0;
+    private double ms= 0;
+    private TextView textview1;
+    private TimerTask time;
     int globalWidth;
     int globalHeight;
     Button bb;
@@ -73,12 +82,32 @@ public class MainActivity extends AppCompatActivity implements
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //Setting the ArrayAdapter data on the Spinner
         spin.setAdapter(aa);
+        textview1 = (TextView)findViewById(R.id.textview1);
 
         start=findViewById(R.id.start_button);
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                flag=true;
+                s = 0;
+                ms = 0;
+                time = new TimerTask(){
+                    @Override
+                    public void run(){
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                ms++;
+                                if(ms == 100){
+                                    s++;
+                                    ms = 0;
+                                }
+                                textview1.setText(new DecimalFormat("00").format(s).concat(":".concat(new DecimalFormat("00").format(ms))));
+                            }
+                        });
+                    }
+                };
+                _timer.scheduleAtFixedRate(time,(int)(10), (int)(10));
+                flag =true;
                 Handler handler = new Handler();
                 switch (itemSelectedSpinner){
                     case 0://bubble
@@ -89,10 +118,11 @@ public class MainActivity extends AppCompatActivity implements
                             public void run() {
                                 Log.d(TAG, "Start Bubble Sort");
 
-                            inProcess=1;
+                                inProcess=1;
                                 c=1;
                                 cc=1;
-                            BubbleSort();
+                                BubbleSort();
+                                time.cancel();
 
 
                             }
@@ -112,6 +142,7 @@ public class MainActivity extends AppCompatActivity implements
                                 cc=1;
 
                                 SelectionSort();
+                                time.cancel();
 
                             }
                         }, 500);
@@ -127,6 +158,7 @@ public class MainActivity extends AppCompatActivity implements
                                 cc=1;
 
                                 InsertionSort();
+                                time.cancel();
 
                             }
                         }, 500);
@@ -142,6 +174,7 @@ public class MainActivity extends AppCompatActivity implements
                                 cc=1;
 
                                 Msort(arr,0,noOfItems-1);
+                                time.cancel();
 
                             }
                         }, 500);
@@ -157,6 +190,7 @@ public class MainActivity extends AppCompatActivity implements
                                 cc=1;
 
                                 cocktailSort(arr);
+                                time.cancel();
 
                             }
                         }, 500);
@@ -172,6 +206,7 @@ public class MainActivity extends AppCompatActivity implements
                                 cc=1;
 
                                 radixsort(arr,noOfItems);
+                                time.cancel();
 
                             }
                         }, 500);
@@ -187,6 +222,7 @@ public class MainActivity extends AppCompatActivity implements
                                 cc=1;
 
                                 HeapSort(arr);
+                                time.cancel();
 
                             }
                         }, 500);
@@ -534,46 +570,46 @@ public class MainActivity extends AppCompatActivity implements
     public void BubbleSort() {
 
         int n = noOfItems;
-                for (i = 0; i < n - 1; i++) {
-                    for (j = 0; j < n - i - 1; j++) {
-                        if (arr[j] > arr[j + 1]) {
+        for (i = 0; i < n - 1; i++) {
+            for (j = 0; j < n - i - 1; j++) {
+                if (arr[j] > arr[j + 1]) {
 
-                            q1.add(j);
-                            q2.add(j+1);
+                    q1.add(j);
+                    q2.add(j+1);
 
-                            int temp = arr[j];
-                            arr[j] = arr[j + 1];
-                            arr[j + 1] = temp;
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
 
-                            h1.add(arr[j]);
-                            h2.add(arr[j+1]);
+                    h1.add(arr[j]);
+                    h2.add(arr[j+1]);
 
-                            Handler handler = new Handler();
-                            handler.postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
 
-                                    @SuppressLint("ResourceType") Button mButton1 = (Button) findViewById(q1.peek());
-                                    @SuppressLint("ResourceType") Button mButton2 = (Button) findViewById(q2.peek());
-                                    LinearLayout.LayoutParams params1 = (LinearLayout.LayoutParams) mButton1.getLayoutParams();
-                                    params1.height = h1.peek();
-                                    mButton1.setLayoutParams(params1);
-                                    LinearLayout.LayoutParams params2 = (LinearLayout.LayoutParams) mButton2.getLayoutParams();
-                                    params2.height = h2.peek();
-                                    mButton2.setLayoutParams(params2);
+                            @SuppressLint("ResourceType") Button mButton1 = (Button) findViewById(q1.peek());
+                            @SuppressLint("ResourceType") Button mButton2 = (Button) findViewById(q2.peek());
+                            LinearLayout.LayoutParams params1 = (LinearLayout.LayoutParams) mButton1.getLayoutParams();
+                            params1.height = h1.peek();
+                            mButton1.setLayoutParams(params1);
+                            LinearLayout.LayoutParams params2 = (LinearLayout.LayoutParams) mButton2.getLayoutParams();
+                            params2.height = h2.peek();
+                            mButton2.setLayoutParams(params2);
 //                                    Log.d(TAG, h1.peek()+" "+h2.peek()+" "+q1.peek()+" "+q2.peek());
-                                    q1.remove();
-                                    q2.remove();
-                                    h1.remove();
-                                    h2.remove();
-
-                                }
-                            }, 10*cc);
-                            cc++;
+                            q1.remove();
+                            q2.remove();
+                            h1.remove();
+                            h2.remove();
 
                         }
-                    }
+                    }, 10*cc);
+                    cc++;
+
                 }
+            }
+        }
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
@@ -881,6 +917,7 @@ public class MainActivity extends AppCompatActivity implements
                 }
             }, 30*cc);
             cc++;
+            time.cancel();
 
             heapify(arr, n, largest);
         }
@@ -936,6 +973,4 @@ public class MainActivity extends AppCompatActivity implements
 
 
 }
-
-
 

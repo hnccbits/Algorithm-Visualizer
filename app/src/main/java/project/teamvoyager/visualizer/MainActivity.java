@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
@@ -108,7 +109,7 @@ public class MainActivity extends AppCompatActivity implements
                 };
                 _timer.scheduleAtFixedRate(time,(int)(10), (int)(10));
                 flag =true;
-                Handler handler = new Handler();
+                Handler handler = new Handler(Looper.myLooper());
                 switch (itemSelectedSpinner){
                     case 0://bubble
                         inProcess=1;
@@ -317,7 +318,7 @@ public class MainActivity extends AppCompatActivity implements
 
                 q1.add(j+1);
                 h1.add(arr[j+1]);
-                Handler handler = new Handler();
+                Handler handler = new Handler(Looper.myLooper());
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -341,7 +342,7 @@ public class MainActivity extends AppCompatActivity implements
             arr[j + 1] = key;
             q1.add(j+1);
             h1.add(arr[j+1]);
-            Handler handler = new Handler();
+            Handler handler = new Handler(Looper.myLooper());
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -358,7 +359,7 @@ public class MainActivity extends AppCompatActivity implements
             cc++;
 
         }
-        Handler handler = new Handler();
+        Handler handler = new Handler(Looper.myLooper());
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -391,7 +392,7 @@ public class MainActivity extends AppCompatActivity implements
             h1.add(arr[i]);
             h2.add(arr[min_idx]);
 
-            Handler handler = new Handler();
+            Handler handler = new Handler(Looper.myLooper());
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -421,7 +422,7 @@ public class MainActivity extends AppCompatActivity implements
 
 
         }
-        Handler handler = new Handler();
+        Handler handler = new Handler(Looper.myLooper());
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -455,7 +456,7 @@ public class MainActivity extends AppCompatActivity implements
                 q1.add(k);
                 h1.add(arr[k]);
                 i++;
-                Handler handler = new Handler();
+                Handler handler = new Handler(Looper.myLooper());
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -475,7 +476,7 @@ public class MainActivity extends AppCompatActivity implements
                 arr[k] = R[j];
                 q1.add(k);
                 h1.add(arr[k]);
-                Handler handler = new Handler();
+                Handler handler = new Handler(Looper.myLooper());
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -499,7 +500,7 @@ public class MainActivity extends AppCompatActivity implements
             arr[k] = L[i];
             q1.add(k);
             h1.add(arr[k]);
-            Handler handler = new Handler();
+            Handler handler = new Handler(Looper.myLooper());
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -522,7 +523,7 @@ public class MainActivity extends AppCompatActivity implements
             arr[k] = R[j];
             q1.add(k);
             h1.add(arr[k]);
-            Handler handler = new Handler();
+            Handler handler = new Handler(Looper.myLooper());
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -551,7 +552,7 @@ public class MainActivity extends AppCompatActivity implements
             merge(arr, l, m, r);
         }
         if (l==0 && r==noOfItems-1){
-            Handler handler = new Handler();
+            Handler handler = new Handler(Looper.myLooper());
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -584,7 +585,7 @@ public class MainActivity extends AppCompatActivity implements
                     h1.add(arr[j]);
                     h2.add(arr[j+1]);
 
-                    Handler handler = new Handler();
+                    Handler handler = new Handler(Looper.myLooper());
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -610,7 +611,7 @@ public class MainActivity extends AppCompatActivity implements
                 }
             }
         }
-        Handler handler = new Handler();
+        Handler handler = new Handler(Looper.myLooper());
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -646,7 +647,7 @@ public class MainActivity extends AppCompatActivity implements
                     h1.add(arr[i]);
                     h2.add(arr[i+1]);
 
-                    Handler handler = new Handler();
+                    Handler handler = new Handler(Looper.myLooper());
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -693,7 +694,7 @@ public class MainActivity extends AppCompatActivity implements
                     h1.add(arr[i]);
                     h2.add(arr[i+1]);
 
-                    Handler handler = new Handler();
+                    Handler handler = new Handler(Looper.myLooper());
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -722,7 +723,7 @@ public class MainActivity extends AppCompatActivity implements
 
             start = start + 1;
         }
-        Handler handler = new Handler();
+        Handler handler = new Handler(Looper.myLooper());
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -771,7 +772,7 @@ public class MainActivity extends AppCompatActivity implements
             arr[i] = output[i];
             q1.add(i);
             h1.add(arr[i]);
-            Handler handler = new Handler();
+            Handler handler = new Handler(Looper.myLooper());
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -798,7 +799,7 @@ public class MainActivity extends AppCompatActivity implements
         for (int exp = 1; m/exp > 0; exp *= 10)
             countSort(arr, n, exp);
 
-        Handler handler = new Handler();
+        Handler handler = new Handler(Looper.myLooper());
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -831,7 +832,7 @@ public class MainActivity extends AppCompatActivity implements
             h1.add(arr[0]);
             h2.add(arr[i]);
 
-            Handler handler = new Handler();
+            Handler handler = new Handler(Looper.myLooper());
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -859,7 +860,7 @@ public class MainActivity extends AppCompatActivity implements
             heapify(arr, i, 0);
         }
 
-        Handler handler = new Handler();
+        Handler handler = new Handler(Looper.myLooper());
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -895,7 +896,7 @@ public class MainActivity extends AppCompatActivity implements
             h1.add(arr[i]);
             h2.add(arr[largest]);
 
-            Handler handler = new Handler();
+            Handler handler = new Handler(Looper.myLooper());
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
